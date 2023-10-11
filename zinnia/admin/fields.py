@@ -39,10 +39,6 @@ class MPTTModelMultipleChoiceField(forms.ModelMultipleChoiceField):
             return '%s %s' % (prefix, label)
         return label
 
-    def _get_choices(self):
-        """
-        Override the _get_choices method to use MPTTModelChoiceIterator.
-        """
+    @forms.ModelMultipleChoiceField.choices.getter
+    def choices(self):
         return MPTTModelChoiceIterator(self)
-
-    choices = property(_get_choices, forms.ChoiceField.choices)
