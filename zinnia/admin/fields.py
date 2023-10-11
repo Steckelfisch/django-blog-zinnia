@@ -41,4 +41,7 @@ class MPTTModelMultipleChoiceField(forms.ModelMultipleChoiceField):
 
     @forms.ModelMultipleChoiceField.choices.getter
     def choices(self):
+         """
+         Override the choices getter method to use MPTTModelChoiceIterator.
+         """
         return MPTTModelChoiceIterator(self)
