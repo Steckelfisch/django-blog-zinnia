@@ -45,3 +45,5 @@ class MPTTModelMultipleChoiceField(forms.ModelMultipleChoiceField):
          Override the choices getter method to use MPTTModelChoiceIterator.
          """
         return MPTTModelChoiceIterator(self)
+
+    choices = property(_get_choices, forms.ChoiceField._set_choices)
